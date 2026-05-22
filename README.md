@@ -6,7 +6,7 @@
 
 ---
 
-## 📖 Game Description
+##  Game Description
 
 **Quoridor** is a strategy board game invented by Mirko Marchesi (1997). Players take turns either moving their pawn toward the opposite side of the board or placing walls to obstruct their opponent. The first player to reach any square on the opposite baseline wins.
 
@@ -20,7 +20,7 @@
 
 ---
 
-## 🎮 Features
+##  Features
 
 ### Core Requirements
 - ✅ Complete 2-player Quoridor ruleset implementation
@@ -50,7 +50,7 @@
 
 ---
 
-## 🖼️ Screenshots
+##  Screenshots
 
 *(Add screenshots here showing: main game screen, wall placement preview, valid move highlights, winner announcement dialog)*
 
@@ -60,7 +60,7 @@
 
 ---
 
-## 🚀 Installation & Running
+##  Installation & Running
 
 ### Requirements
 - Qt 5.15+ or Qt 6.x
@@ -94,7 +94,7 @@ make
 
 ---
 
-## 🎮 Controls
+##  Controls
 
 | Action | Control |
 |--------|---------|
@@ -109,7 +109,7 @@ make
 
 ---
 
-## 🤖 AI Implementation
+##  AI Implementation
 
 ### Difficulty Levels
 
@@ -127,7 +127,7 @@ make
 
 ---
 
-## 🏗️ Architecture & Design
+##  Architecture & Design
 
 ### Design Patterns Used
 - **Memento Pattern** — `GameState` snapshots enable undo/redo functionality
@@ -169,7 +169,7 @@ quoridor/
 
 ---
 
-## 🧪 Testing & Validation
+##  Testing & Validation
 
 ### Game Rules Validation
 - Wall placement validated against overlap, crossing, and path-blocking (BFS)
@@ -184,7 +184,7 @@ quoridor/
 
 ---
 
-## 🎥 Demo Video
+##  Demo Video
 
 *[Link to demo video]*
 
@@ -197,7 +197,7 @@ The demo video covers:
 
 ---
 
-## 📋 Project Report
+##  Project Report
 
 See `Project_Report.pdf` for detailed documentation including:
 - Design decisions and architecture explanation
@@ -233,7 +233,7 @@ See `Project_Report.pdf` for detailed documentation including:
 
 ## 📄 License
 
-This project was developed for educational purposes as part of CSE472s: Artificial Intelligence at [University Name].
+This project was developed for educational purposes as part of CSE471s: Artificial Intelligence at [University Name].
 
 ---
 
