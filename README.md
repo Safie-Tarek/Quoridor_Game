@@ -189,5 +189,5 @@ The video covers:
 
 **Course:** CSE471s — Artificial Intelligence  
 **Semester:** Spring 2026  
-**Instructor:** Manal Morad Zaki
+**Instructor:**Dr. Manal Morad Zaki
 
