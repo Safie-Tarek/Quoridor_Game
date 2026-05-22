@@ -7,7 +7,6 @@ A complete implementation of the abstract strategy board game **Quoridor**, buil
 ## Table of Contents
 
 - [Game Description](#game-description)
-- [Screenshots](#screenshots)
 - [Features](#features)
 - [Installation and Running](#installation-and-running)
 - [Controls](#controls)
@@ -183,12 +182,12 @@ The video covers:
 
 | Name | Student ID |
 |---|---|
-| [Safie Tarek Mahmoud] | [2300136] |
-| [Moamen Ahmed Badr] | [2300636] |
-| [Ibrahim Mahrous Ahmed Mohamed] | [2300173] |
-| [Mohamed Emad Mohamed Helal] | [2300615] |
+| Safie Tarek Mahmoud | 2300136 |
+| Moamen Ahmed Badr | 2300636 |
+| Ibrahim Mahrous Ahmed Mohamed | 2300173 |
+| Mohamed Emad Mohamed Helal | 2300615 |
 
 **Course:** CSE471s — Artificial Intelligence  
 **Semester:** Spring 2026  
-**Instructor:** [Manal Morad Zaki]  
+**Instructor:** Manal Morad Zaki
 
