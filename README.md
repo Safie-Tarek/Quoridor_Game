@@ -168,7 +168,7 @@ main.cpp (StartupDialog)
 
 ## Demo Video
 
-> **[Insert YouTube / Google Drive link here]**
+> ** https://drive.google.com/drive/folders/1ouFU0PbZJACJvIA_XUjD3nc3pi0F5xI4**
 
 The video covers:
 1. Application startup and mode selection
