@@ -1,233 +1,208 @@
-# Quoridor Game Implementation
+# Quoridor Game
 
-> **CSE471s: Artificial Intelligence — Spring 2026 Term Project**
->
-> A complete implementation of the abstract strategy board game Quoridor with GUI, AI opponents, and full game mechanics.
+A complete implementation of the abstract strategy board game **Quoridor**, built in C++ with a Qt graphical user interface. Developed as a term project for **CSE472s: Artificial Intelligence — Spring 2026**.
 
 ---
 
-##  Game Description
+## Table of Contents
 
-**Quoridor** is a strategy board game invented by Mirko Marchesi (1997). Players take turns either moving their pawn toward the opposite side of the board or placing walls to obstruct their opponent. The first player to reach any square on the opposite baseline wins.
-
-### Rules Implemented
-- **Board**: 9×9 grid
-- **Players**: 2 players (local)
-- **Pieces**: Each player has 1 pawn (starts at center of baseline) and 10 walls
-- **Objective**: Be the first to move your pawn to the opposite side
-- **Movement**: One square orthogonally; jump over adjacent opponent if not blocked; diagonal fallback when jump is blocked by wall
-- **Walls**: 2 squares long, placed between cells; cannot overlap, cross, or completely block any player's path to goal
-
----
-
-##  Features
-
-### Core Requirements
--  Complete 2-player Quoridor ruleset implementation
--  Graphical User Interface (Qt-based)
--  Game state visualization (board, pawns, walls, turn indicator)
--  Valid move highlighting (green cells)
--  Illegal move prevention with visual feedback
--  Path-finding validation for wall placement (BFS ensures no player is trapped)
-
-### Game Modes
-- **Human vs Human** — Local two-player mode on the same computer
-- **Human vs AI** — Play against computer opponent with selectable difficulty
-
-### User Interface
-- Clear board rendering with goal row highlighting
-- Intuitive click-to-move / click-to-place-wall controls
-- **Gold turn indicator ring** around active player's pawn
-- Real-time wall count display per player
-- Status messages (current turn, invalid move warnings, winner announcement)
-- **Right-click to rotate wall orientation** while placing walls
-- Game reset functionality (F2 or New Game button)
-
-### Bonus Features
-- **AI Difficulty Levels** (Easy, Medium, Hard)
-- **Undo / Redo** — Full game state history with Memento pattern (Ctrl+Z / Ctrl+Y)
-- AI opponent with three distinct algorithms (see AI section below)
+- [Game Description](#game-description)
+- [Screenshots](#screenshots)
+- [Features](#features)
+- [Installation and Running](#installation-and-running)
+- [Controls](#controls)
+- [Game Modes and AI Difficulty](#game-modes-and-ai-difficulty)
+- [Project Structure](#project-structure)
+- [Demo Video](#demo-video)
+- [Team](#team)
 
 ---
 
+## Game Description
 
-##  Installation & Running
+Quoridor is a 2–4 player abstract strategy game designed by Mirko Marchesi (Gigamic, 1997). In this implementation you play the 2-player version on a 9×9 board.
 
-### Requirements
-- Qt 5.15+ or Qt 6.x
-- C++17 compiler (GCC 9+, Clang 10+, MSVC 2019+)
-- CMake 3.19+ **or** qmake
+**Objective:** Be the first player to move your pawn to any cell on the opposite side of the board.
+
+**Core Rules:**
+
+- Each player starts at the centre of their baseline (Player 1 at row 8, Player 2 at row 0) with **10 walls**.
+- On each turn a player must either **move their pawn** or **place a wall** — not both.
+- Pawns move one square **orthogonally** (up, down, left, right). Diagonal movement is not normally allowed.
+- If your pawn is adjacent to the opponent's and no wall blocks the way, you can **jump straight over** them.
+- If the straight jump is blocked by a wall or the board edge, you may instead **move diagonally** around the opponent.
+- Walls span **two cell edges** and block movement through those edges permanently.
+- A wall **cannot** be placed if it would completely cut off either player's path to their goal.
+- First pawn to reach **any cell** of the opposite baseline wins.
+
+---
+
+## Screenshots
+
+> _Replace the placeholders below with actual screenshots before submitting._
+
+| Startup Dialog | Gameplay |
+|:-:|:-:|
+| ![Startup Dialog](screenshots/startup.png) | ![Gameplay](screenshots/gameplay.png) |
+
+| Wall Placement Preview | Winner Screen |
+|:-:|:-:|
+| ![Wall Preview](screenshots/wall_preview.png) | ![Winner](screenshots/winner.png) |
+
+---
+
+## Features
+
+- **Complete Quoridor ruleset** — all movement, jump, diagonal-jump, and wall rules implemented
+- **Human vs. Human** — local two-player mode on one machine
+- **Human vs. AI** — play against the computer at three difficulty levels
+- **Three AI difficulty levels:**
+  - *Easy* — follows the BFS shortest path to the goal; never places walls
+  - *Medium* — greedy shortest-path + selective wall blocking
+  - *Hard* — Minimax search (depth 2) with alpha-beta pruning, capped at 300 ms
+- **Valid move highlighting** — togglable overlay shows all legal pawn destinations
+- **Wall ghost preview** — semi-transparent wall follows the mouse before you click
+- **Wall counter** — always shows how many walls each player has left
+- **Turn indicator** and status messages for invalid moves and game-over
+- **Undo / Redo** *(bonus feature)* — full game history via the Memento pattern (up to 100 states)
+- **Game reset** at any time
+- **Keyboard shortcuts** for power users
+
+---
+
+## Installation and Running
+
+### Prerequisites
+
+| Requirement | Minimum Version |
+|---|---|
+| C++ compiler | C++17 (GCC 9+, Clang 10+, MSVC 2019+) |
+| Qt | Qt 5.15 or Qt 6.x |
+| CMake | 3.19+ |
 
 ### Build with CMake (Recommended)
 
 ```bash
-git clone <your-repo-url>
-cd quoridor
-cmake -B build -S . -DCMAKE_PREFIX_PATH="/path/to/Qt/6.x.x/gcc_64"
-cmake --build build --config Release
-./build/Quoridor
-```
+# 1. Clone the repository
+git clone https://github.com/<your-username>/quoridor-game.git
+cd quoridor-game
 
-### Build with qmake
+# 2. Create a build directory
+mkdir build && cd build
 
-```bash
-git clone <your-repo-url>
-cd quoridor
-qmake Quoridor.pro
-make
-./Quoridor
+# 3. Configure — CMake will auto-detect Qt6 or fall back to Qt5
+cmake ..
+
+# 4. Build
+cmake --build . --config Release
+
+# 5. Run
+./Quoridor          # Linux / macOS
+Quoridor.exe        # Windows (Release\Quoridor.exe on MSVC)
 ```
 
 ### Build with Qt Creator
-1. Open `CMakeLists.txt` or `Quoridor.pro` in Qt Creator
-2. Select your Qt kit (5.15+ or 6.x)
-3. Press **Ctrl+R** to build and run
+
+1. Open `Quoridor Game/Quoridor.pro` in Qt Creator.
+2. Select a Qt Kit (Qt 5.15+ or Qt 6).
+3. Click **Build** then **Run**.
+
+### Build with CMake + Qt Creator
+
+1. Open Qt Creator → **File → Open File or Project** → select `CMakeLists.txt`.
+2. Choose a kit and click **Configure Project**.
+3. Click **Build** and then **Run**.
+
+> **Windows note:** After a Release build, run `windeployqt Quoridor.exe` to copy the required Qt DLLs alongside the executable so it can be distributed.
 
 ---
 
-##  Controls
+## Controls
 
-| Action | Control |
-|--------|---------|
-| Move pawn | Click **♟ Move Pawn** button (or press **W**) → click highlighted green cell |
-| Place wall | Click **━ Place Wall** button (or press **W**) → hover for preview → click to place |
-| Rotate wall | **Right-click** anywhere on board (while in wall mode) |
-| Toggle mode | Press **W** |
-| New game | Click **⟳ New Game** or press **F2** |
-| Undo | Click **↩ Undo** or press **Ctrl+Z** |
-| Redo | Click **↪ Redo** or press **Ctrl+Y** |
-| Toggle highlights | Click **✓ Highlights** button |
-
----
-
-##  AI Implementation
-
-### Difficulty Levels
-
-| Level | Algorithm | Behavior |
-|-------|-----------|----------|
-| **Easy** | Greedy BFS | Always follows shortest path to goal; **never places walls** |
-| **Medium** | Greedy BFS + Selective Blocking | Moves along shortest path; places walls on opponent's path only when clearly beneficial |
-| **Hard** | Minimax (depth-2) + Alpha-Beta Pruning | Strategic lookahead with evaluation function; max 12 wall candidates; 300ms time cap |
-
-### Key AI Features
-- **Immediate Win Detection**: All levels check for a winning pawn move before any computation
-- **Pathfinding**: BFS-based shortest path calculation for both players
-- **Evaluation Function** (Hard): `score = (opponentDistance - aiDistance) × 50` with endgame bonuses
-- **Wall Candidate Generation**: Walls are selectively generated near opponent's shortest path to reduce search space
+| Action | How |
+|---|---|
+| **Select pawn destination** | Left-click a highlighted cell (in Move Pawn mode) |
+| **Place a wall** | Switch to Wall mode, hover to preview, left-click to place |
+| **Rotate wall orientation** | Right-click (or press **R**) while in Wall mode |
+| **Toggle Move / Wall mode** | Click the mode buttons in the sidebar, or press **W** |
+| **Show / hide valid moves** | Click the *Show Valid Moves* toggle button |
+| **Undo** | Ctrl+Z or click the **Undo** button |
+| **Redo** | Ctrl+Y or click the **Redo** button |
+| **Reset game** | Click the **Reset** button |
 
 ---
 
-##  Architecture & Design
+## Game Modes and AI Difficulty
 
-### Design Patterns Used
-- **Memento Pattern** — `GameState` snapshots enable undo/redo functionality
-- **Model-View Separation** — `Game` (model) is independent of Qt; `BoardWidget` (view) reads state through `Game` API
-- **Strategy Pattern** — `AIPlayer` dispatches to different algorithms based on difficulty level
+Select the mode and difficulty in the **startup dialog** before the game begins. You can also change the AI difficulty mid-game using the dropdown in the sidebar.
 
-### Class Overview
+| Mode | Description |
+|---|---|
+| Human vs. Human | Two people take turns on the same computer |
+| Human vs. AI | Play against the computer (Easy / Medium / Hard) |
 
-| Class | Responsibility |
-|-------|--------------|
-| `Game` | Central game state, turn management, AI integration, undo/redo |
-| `Board` | 9×9 grid, wall storage (2D boolean arrays), move validation, BFS pathfinding |
-| `Player` | Player metadata (name, position, wall count, goal row) |
-| `AIPlayer` | Computer opponent — three difficulty algorithms |
-| `BoardWidget` | Qt widget: renders board, handles mouse input, emits move signals |
-| `MainWindow` | Primary application window with toolbar, status panel, mode controls |
-| `GameWindow` | Alternative simpler window layout |
-| `GameState` | Memento struct for undo/redo snapshots |
-| `Position` | Lightweight (row, col) coordinate struct |
-| `Wall` | Wall piece with overlap/cross detection |
+| Difficulty | Strategy | Wall Usage |
+|---|---|---|
+| Easy | Always follows BFS shortest path | Never |
+| Medium | Greedy BFS + places walls that significantly delay the opponent | Yes |
+| Hard | Minimax depth-2 with alpha-beta pruning (300 ms cap) | Yes |
 
-### File Structure
+---
+
+## Project Structure
+
 ```
-quoridor/
-├── main.cpp              # Entry point with startup dialog
-├── CMakeLists.txt        # CMake build config
-├── Quoridor.pro          # qmake build config
-├── Game.h/cpp            # Core game logic & state management
-├── Board.h/cpp           # Board representation & validation
-├── Player.h/cpp          # Player state
-├── AIPlayer.h/cpp        # AI opponent algorithms
-├── BoardWidget.h/cpp     # Qt board rendering & input
-├── MainWindow.h/cpp      # Primary GUI window
-├── GameWindow.h/cpp      # Alternative GUI window
-├── GameState.h           # Undo/redo snapshot struct
-├── Position.h            # Coordinate struct
-└── Wall.h/cpp            # Wall piece logic
+Quoridor Game/
+├── main.cpp            # Entry point, startup dialog
+├── Position.h          # Lightweight (row, col) coordinate struct
+├── Wall.h / .cpp       # Wall data model, overlap & cross detection
+├── Board.h / .cpp      # 9×9 board state, move validation, BFS
+├── Player.h / .cpp     # Player data (position, wall count, goal row)
+├── GameState.h         # Immutable game snapshot (Memento pattern)
+├── Game.h / .cpp       # Central controller, turn management, undo/redo
+├── AIPlayer.h / .cpp   # AI logic — Easy, Medium, Hard
+├── BoardWidget.h/.cpp  # Qt widget: renders board, handles mouse input
+├── MainWindow.h/.cpp   # Top-level Qt window, sidebar controls
+├── GameWindow.h/.cpp   # Alternate window layout
+├── CMakeLists.txt      # CMake build configuration (Qt5/Qt6 auto-detect)
+└── Quoridor.pro        # Qt Creator .pro file (legacy)
 ```
 
----
+**Architecture at a glance:**
 
-##  Testing & Validation
+```
+main.cpp (StartupDialog)
+    └── MainWindow
+            ├── BoardWidget  ──reads──►  Game  ──delegates──►  Board
+            └── Sidebar controls              └── AIPlayer
+```
 
-### Game Rules Validation
-- Wall placement validated against overlap, crossing, and path-blocking (BFS)
-- Pawn movement validated for orthogonal steps, jumps, and diagonal fallbacks
-- Turn switching enforced after each valid action
-- Win condition checked after every pawn move
-
-### AI Testing
-- Easy AI always finds path (no oscillation)
-- Medium AI only places walls that increase opponent's path length
-- Hard AI respects time cap and returns best move found
+`BoardWidget` never contains game rules — all logic lives in `Game` and `Board`.
 
 ---
 
-##  Demo Video
+## Demo Video
 
-*[Link to demo video]*
+> **[Insert YouTube / Google Drive link here]**
 
-The demo video covers:
-1. Game setup and UI overview
-2. Human vs Human gameplay demonstration
-3. Human vs AI gameplay (all three difficulty levels)
-4. Undo/redo functionality
-5. Wall placement and rotation
-
----
-
-##  Project Report
-
-See `Project_Report.pdf` for detailed documentation including:
-- Design decisions and architecture explanation
-- Implementation challenges and solutions
-- AI algorithm deep-dive
-- Assumptions and limitations
-- References and resources
+The video covers:
+1. Application startup and mode selection
+2. Human vs. Human full game
+3. Human vs. AI gameplay at each difficulty level
+4. Undo/Redo demonstration
 
 ---
 
-##  Team Members
+## Team
 
-- *[Safie Tarek Mahmoud]* — [ID: 2300136]
-- *[Moamen Ahmed Badr]* — [ID: 2300636]
-- *[Ibrahim Mahrous Ahmed Mohamed]* — [ID: 2300173]
-- *[Mohamed Emad Mohamed Helal]* — [ID: 2300615]
+| Name | Student ID |
+|---|---|
+| [Student Name 1] | [ID] |
+| [Student Name 2] | [ID] |
+| [Student Name 3] | [ID] |
+| [Student Name 4] | [ID] |
 
-
-*(Update with actual team members)*
-
----
-
-##  References & Resources
-
-- [Official Quoridor Rules](https://www.gigamic.com/files/catalog/products/rules/quoridor-classic-quoridor-en.pdf)
-- [Quoridor on BoardGameGeek](https://boardgamegeek.com/boardgame/624/quoridor)
-- Pathfinding: BFS algorithm for shortest path validation
-- AI: Minimax with Alpha-Beta Pruning for Hard difficulty
-- Qt Framework Documentation (qt.io)
-
----
-
-##  License
-
-This project was developed for educational purposes as part of CSE471s: Artificial Intelligence at [University Name].
-
----
-
-> **Course**: CSE472s — Artificial Intelligence  
-> **Semester**: Spring 2026  
-> **Instructor**: [Instructor Name]  
-> **Deadline**: May 28, 2026
+**Course:** CSE472s — Artificial Intelligence  
+**Semester:** Spring 2026  
+**Instructor:** [Instructor Name]  
+**Submission Deadline:** 28 May 2026
