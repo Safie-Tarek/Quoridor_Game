@@ -1,6 +1,6 @@
 # Quoridor Game Implementation
 
-> **CSE472s: Artificial Intelligence — Spring 2026 Term Project**
+> **CSE471s: Artificial Intelligence — Spring 2026 Term Project**
 >
 > A complete implementation of the abstract strategy board game Quoridor with GUI, AI opponents, and full game mechanics.
 
@@ -23,12 +23,12 @@
 ##  Features
 
 ### Core Requirements
-- ✅ Complete 2-player Quoridor ruleset implementation
-- ✅ Graphical User Interface (Qt-based)
-- ✅ Game state visualization (board, pawns, walls, turn indicator)
-- ✅ Valid move highlighting (green cells)
-- ✅ Illegal move prevention with visual feedback
-- ✅ Path-finding validation for wall placement (BFS ensures no player is trapped)
+-  Complete 2-player Quoridor ruleset implementation
+-  Graphical User Interface (Qt-based)
+-  Game state visualization (board, pawns, walls, turn indicator)
+-  Valid move highlighting (green cells)
+-  Illegal move prevention with visual feedback
+-  Path-finding validation for wall placement (BFS ensures no player is trapped)
 
 ### Game Modes
 - **Human vs Human** — Local two-player mode on the same computer
@@ -50,15 +50,6 @@
 
 ---
 
-##  Screenshots
-
-*(Add screenshots here showing: main game screen, wall placement preview, valid move highlights, winner announcement dialog)*
-
-```
-[Placeholder: Add screenshots to README_IMG/ folder and reference them here]
-```
-
----
 
 ##  Installation & Running
 
@@ -208,20 +199,19 @@ See `Project_Report.pdf` for detailed documentation including:
 
 ---
 
-## 👥 Team Members
+##  Team Members
 
-- *[Name 1]* — [Role / Contribution]
-- *[Name 2]* — [Role / Contribution]
-- *[Name 3]* — [Role / Contribution]
-- *[Name 4]* — [Role / Contribution]
-- *[Name 5]* — [Role / Contribution]
-- *[Name 6]* — [Role / Contribution]
+- *[Safie Tarek Mahmoud]* — [ID: 2300136]
+- *[Moamen Ahmed Badr]* — [ID: 2300636]
+- *[Ibrahim Mahrous Ahmed Mohamed]* — [ID: 2300173]
+- *[Mohamed Emad Mohamed Helal]* — [ID: 2300615]
+
 
 *(Update with actual team members)*
 
 ---
 
-## 📚 References & Resources
+##  References & Resources
 
 - [Official Quoridor Rules](https://www.gigamic.com/files/catalog/products/rules/quoridor-classic-quoridor-en.pdf)
 - [Quoridor on BoardGameGeek](https://boardgamegeek.com/boardgame/624/quoridor)
@@ -231,7 +221,7 @@ See `Project_Report.pdf` for detailed documentation including:
 
 ---
 
-## 📄 License
+##  License
 
 This project was developed for educational purposes as part of CSE471s: Artificial Intelligence at [University Name].
 
