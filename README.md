@@ -1,6 +1,6 @@
 # Quoridor Game
 
-A complete implementation of the abstract strategy board game **Quoridor**, built in C++ with a Qt graphical user interface. Developed as a term project for **CSE472s: Artificial Intelligence — Spring 2026**.
+A complete implementation of the abstract strategy board game **Quoridor**, built in C++ with a Qt graphical user interface. Developed as a term project for **CSE471s: Artificial Intelligence — Spring 2026**.
 
 ---
 
@@ -35,21 +35,7 @@ Quoridor is a 2–4 player abstract strategy game designed by Mirko Marchesi (Gi
 - A wall **cannot** be placed if it would completely cut off either player's path to their goal.
 - First pawn to reach **any cell** of the opposite baseline wins.
 
----
 
-## Screenshots
-
-> _Replace the placeholders below with actual screenshots before submitting._
-
-| Startup Dialog | Gameplay |
-|:-:|:-:|
-| ![Startup Dialog](screenshots/startup.png) | ![Gameplay](screenshots/gameplay.png) |
-
-| Wall Placement Preview | Winner Screen |
-|:-:|:-:|
-| ![Wall Preview](screenshots/wall_preview.png) | ![Winner](screenshots/winner.png) |
-
----
 
 ## Features
 
@@ -197,12 +183,12 @@ The video covers:
 
 | Name | Student ID |
 |---|---|
-| [Student Name 1] | [ID] |
-| [Student Name 2] | [ID] |
-| [Student Name 3] | [ID] |
-| [Student Name 4] | [ID] |
+| [Safie Tarek Mahmoud] | [2300136] |
+| [Moamen Ahmed Badr] | [2300636] |
+| [Ibrahim Mahrous Ahmed Mohamed] | [2300173] |
+| [Mohamed Emad Mohamed Helal] | [2300615] |
 
-**Course:** CSE472s — Artificial Intelligence  
+**Course:** CSE471s — Artificial Intelligence  
 **Semester:** Spring 2026  
-**Instructor:** [Instructor Name]  
-**Submission Deadline:** 28 May 2026
+**Instructor:** [Manal Morad Zaki]  
+
